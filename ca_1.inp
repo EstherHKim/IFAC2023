@@ -1,0 +1,161 @@
+[TITLE]
+;;Project Title/Notes
+
+[OPTIONS]
+;;Option             Value
+FLOW_UNITS           CMS
+INFILTRATION         HORTON
+FLOW_ROUTING         KINWAVE
+LINK_OFFSETS         DEPTH
+MIN_SLOPE            0
+ALLOW_PONDING        NO
+SKIP_STEADY_STATE    NO
+
+START_DATE           01/03/1973
+START_TIME           00:00:00
+REPORT_START_DATE    09/26/2008
+REPORT_START_TIME    00:00:00
+END_DATE             02/21/2021
+END_TIME             01:00:00
+SWEEP_START          01/01
+SWEEP_END            12/31
+DRY_DAYS             0
+REPORT_STEP          00:15:00
+WET_STEP             00:05:00
+DRY_STEP             01:00:00
+ROUTING_STEP         0:00:20 
+RULE_STEP            00:00:00
+
+INERTIAL_DAMPING     PARTIAL
+NORMAL_FLOW_LIMITED  BOTH
+FORCE_MAIN_EQUATION  H-W
+VARIABLE_STEP        0.75
+LENGTHENING_STEP     0
+MIN_SURFAREA         12.566
+MAX_TRIALS           8
+HEAD_TOLERANCE       0.005
+SYS_FLOW_TOL         5
+LAT_FLOW_TOL         5
+MINIMUM_STEP         0.5
+THREADS              1
+
+[EVAPORATION]
+;;Data Source    Parameters
+;;-------------- ----------------
+MONTHLY          0.06   0.08   0.11   0.15   0.17   0.19   0.19   0.18   0.15   0.11   0.08   0.06  
+DRY_ONLY         NO
+
+[RAINGAGES]
+;;Name           Format    Interval SCF      Source    
+;;-------------- --------- ------ ------ ----------
+Santee           INTENSITY 1:00     1.0      TIMESERIES 24-hr           
+Rain3            VOLUME    1:00     1.0      FILE       "santee_rain_cont.txt" Dam        IN   
+
+[SUBCATCHMENTS]
+;;Name           Rain Gage        Outlet           Area     %Imperv  Width    %Slope   CurbLen  SnowPack        
+;;-------------- ---------------- ---------------- -------- -------- -------- -------- -------- ----------------
+Sub1             Rain3            Junc1            103      65.4     1225     10       0                        
+
+[SUBAREAS]
+;;Subcatchment   N-Imperv   N-Perv     S-Imperv   S-Perv     PctZero    RouteTo    PctRouted 
+;;-------------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
+Sub1             0.012      0.1        0.05       0.1        25         OUTLET    
+
+[INFILTRATION]
+;;Subcatchment   Param1     Param2     Param3     Param4     Param5    
+;;-------------- ---------- ---------- ---------- ---------- ----------
+Sub1             9          0.025      0.30                             GREEN_AMPT
+
+[JUNCTIONS]
+;;Name           Elevation  MaxDepth   InitDepth  SurDepth   Aponded   
+;;-------------- ---------- ---------- ---------- ---------- ----------
+Junc1            0          0          0          0          0         
+
+[OUTFALLS]
+;;Name           Elevation  Type       Stage Data       Gated    Route To        
+;;-------------- ---------- ---------- ---------------- -------- ----------------
+Alvarado         0          FREE                        NO                       
+
+[CONDUITS]
+;;Name           From Node        To Node          Length     Roughness  InOffset   OutOffset  InitFlow   MaxFlow   
+;;-------------- ---------------- ---------------- ---------- ---------- ---------- ---------- ---------- ----------
+Cond1            Junc1            Alvarado         200        0.022      0          0          0          0         
+
+[XSECTIONS]
+;;Link           Shape        Geom1            Geom2      Geom3      Geom4      Barrels    Culvert   
+;;-------------- ------------ ---------------- ---------- ---------- ---------- ---------- ----------
+Cond1            CIRCULAR     3.5              0          0          0          1                    
+
+[TIMESERIES]
+;;Name           Date       Time       Value     
+;;-------------- ---------- ---------- ----------
+24-hr            2/20/2021  1:00       0.014     
+24-hr            2/20/2021  2:00       0.015     
+24-hr            2/20/2021  3:00       0.016     
+24-hr            2/20/2021  4:00       0.017     
+24-hr            2/20/2021  5:00       0.018     
+24-hr            2/20/2021  6:00       0.019     
+24-hr            2/20/2021  7:00       0.020     
+24-hr            2/20/2021  8:00       0.023     
+24-hr            2/20/2021  9:00       0.024     
+24-hr            2/20/2021  10:00      0.029     
+24-hr            2/20/2021  11:00      0.030     
+24-hr            2/20/2021  12:00      0.039     
+24-hr            2/20/2021  13:00      0.045     
+24-hr            2/20/2021  14:00      0.066     
+24-hr            2/20/2021  15:00      0.093     
+24-hr            2/20/2021  16:00      0.334     
+24-hr            2/20/2021  17:00      0.053     
+24-hr            2/20/2021  18:00      0.033     
+24-hr            2/20/2021  19:00      0.026     
+24-hr            2/20/2021  20:00      0.021     
+24-hr            2/20/2021  21:00      0.019     
+24-hr            2/20/2021  22:00      0.017     
+24-hr            2/20/2021  23:00      0.015     
+24-hr            2/20/2021  24:00      0.014     
+
+[REPORT]
+;;Reporting Options
+SUBCATCHMENTS ALL
+NODES ALL
+LINKS ALL
+
+[TAGS]
+
+[MAP]
+DIMENSIONS -2672.634 0.000 12672.634 10000.000
+Units      None
+
+[COORDINATES]
+;;Node           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+Junc1            3968.043           8202.397          
+Alvarado         4032.043           8518.024          
+
+[VERTICES]
+;;Link           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+
+[Polygons]
+;;Subcatchment   X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+Sub1             4001.332           8255.659          
+Sub1             4001.332           8255.659          
+Sub1             3988.016           8255.659          
+Sub1             3122.503           6644.474          
+Sub1             3455.393           5113.182          
+Sub1             3695.073           3968.043          
+Sub1             3628.495           2037.284          
+Sub1             5439.414           2170.439          
+Sub1             7569.907           3488.682          
+Sub1             7316.911           4660.453          
+Sub1             5772.304           5605.859          
+Sub1             4893.475           6737.683          
+Sub1             4054.594           8295.606          
+
+[SYMBOLS]
+;;Gage           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+Santee           6662.216           6168.224          
+Rain3            7629.827           5552.597          
+

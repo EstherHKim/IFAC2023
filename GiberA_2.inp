@@ -1,0 +1,176 @@
+[TITLE]
+;;Project Title/Notes
+
+[OPTIONS]
+;;Option             Value
+FLOW_UNITS           CMS
+INFILTRATION         HORTON
+FLOW_ROUTING         KINWAVE
+LINK_OFFSETS         DEPTH
+MIN_SLOPE            0
+ALLOW_PONDING        NO
+SKIP_STEADY_STATE    NO
+
+START_DATE           11/16/2022
+START_TIME           00:00:00
+REPORT_START_DATE    11/16/2022
+REPORT_START_TIME    00:00:00
+END_DATE             11/16/2022
+END_TIME             06:00:00
+SWEEP_START          1/1
+SWEEP_END            12/31
+DRY_DAYS             0
+REPORT_STEP          00:15:00
+WET_STEP             00:05:00
+DRY_STEP             01:00:00
+ROUTING_STEP         0:00:30 
+RULE_STEP            00:00:00
+
+INERTIAL_DAMPING     PARTIAL
+NORMAL_FLOW_LIMITED  BOTH
+FORCE_MAIN_EQUATION  H-W
+VARIABLE_STEP        0.75
+LENGTHENING_STEP     0
+MIN_SURFAREA         0
+MAX_TRIALS           0
+HEAD_TOLERANCE       0
+SYS_FLOW_TOL         5
+LAT_FLOW_TOL         5
+MINIMUM_STEP         0.5
+THREADS              1
+
+[EVAPORATION]
+;;Data Source    Parameters
+;;-------------- ----------------
+CONSTANT         0.0
+DRY_ONLY         NO
+
+[SUBCATCHMENTS]
+;;Name           Rain Gage        Outlet           Area     %Imperv  Width    %Slope   CurbLen  SnowPack        
+;;-------------- ---------------- ---------------- -------- -------- -------- -------- -------- ----------------
+Sub1             *                Pond1            5        25       500      0.5      0                        
+Sub2             *                Pond2            5        25       500      0.5      0                        
+Sub3             *                Pond3            5        25       500      0.5      0                        
+
+[SUBAREAS]
+;;Subcatchment   N-Imperv   N-Perv     S-Imperv   S-Perv     PctZero    RouteTo    PctRouted 
+;;-------------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
+Sub1             0.01       0.1        0.05       0.05       25         OUTLET    
+Sub2             0.01       0.1        0.05       0.05       25         OUTLET    
+Sub3             0.01       0.1        0.05       0.05       25         OUTLET    
+
+[INFILTRATION]
+;;Subcatchment   Param1     Param2     Param3     Param4     Param5    
+;;-------------- ---------- ---------- ---------- ---------- ----------
+Sub1             3.0        0.5        4          7          0         
+Sub2             3.0        0.5        4          7          0         
+Sub3             3.0        0.5        4          7          0         
+
+[JUNCTIONS]
+;;Name           Elevation  MaxDepth   InitDepth  SurDepth   Aponded   
+;;-------------- ---------- ---------- ---------- ---------- ----------
+J1               0          0          0          0          0         
+J2               0          0          0          0          0         
+J3               0          0          0          0          0         
+J4               0          0          0          0          0         
+J5               0          0          0          0          0         
+
+[OUTFALLS]
+;;Name           Elevation  Type       Stage Data       Gated    Route To        
+;;-------------- ---------- ---------- ---------------- -------- ----------------
+O1               0          FREE                        NO                       
+
+[STORAGE]
+;;Name           Elev.    MaxDepth   InitDepth  Shape      Curve Name/Params            N/A      Fevap    Psi      Ksat     IMD     
+;;-------------- -------- ---------- ----------- ---------- ---------------------------- -------- --------          -------- --------
+Pond1            0        0          0          FUNCTIONAL 1000      0         0        0        0       
+Pond2            0        0          0          FUNCTIONAL 1000      0         0        0        0       
+Pond3            0        0          0          FUNCTIONAL 1000      0         0        0        0       
+
+[CONDUITS]
+;;Name           From Node        To Node          Length     Roughness  InOffset   OutOffset  InitFlow   MaxFlow   
+;;-------------- ---------------- ---------------- ---------- ---------- ---------- ---------- ---------- ----------
+C2               J1               J2               400        0.01       0          0          0          0         
+C3               J2               J3               400        0.01       0          0          0          0         
+C4               J4               J3               400        0.01       0          0          0          0         
+C5               J5               J4               400        0.01       0          0          0          0         
+C7               J3               O1               400        0.01       0          0          0          0         
+
+[ORIFICES]
+;;Name           From Node        To Node          Type         Offset     Qcoeff     Gated    CloseTime 
+;;-------------- ---------------- ---------------- ------------ ---------- ---------- -------- ----------
+1                Pond3            J4               SIDE         0          0.65       NO       0         
+2                Pond2            J5               SIDE         0          0.65       NO       0         
+3                Pond1            J1               SIDE         0          0.65       NO       0         
+
+[XSECTIONS]
+;;Link           Shape        Geom1            Geom2      Geom3      Geom4      Barrels    Culvert   
+;;-------------- ------------ ---------------- ---------- ---------- ---------- ---------- ----------
+C2               CIRCULAR     1                0          0          0          1                    
+C3               CIRCULAR     1                0          0          0          1                    
+C4               CIRCULAR     1                0          0          0          1                    
+C5               CIRCULAR     1                0          0          0          1                    
+C7               CIRCULAR     1                0          0          0          1                    
+1                CIRCULAR     1                0          0          0
+2                CIRCULAR     1                0          0          0
+3                CIRCULAR     1                0          0          0
+
+[REPORT]
+;;Reporting Options
+SUBCATCHMENTS ALL
+NODES ALL
+LINKS ALL
+
+[TAGS]
+
+[MAP]
+DIMENSIONS -3852.295 0.000 13852.295 10000.000
+Units      None
+
+[COORDINATES]
+;;Node           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+J1               2197.071           6271.638          
+J2               4513.981           7177.097          
+J3               7496.671           7123.835          
+J4               7256.991           6498.003          
+J5               6484.687           5339.547          
+O1               9587.217           7909.454          
+Pond1            1584.554           5952.064          
+Pond2            5792.277           5073.236          
+Pond3            7802.929           5938.748          
+
+[VERTICES]
+;;Link           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+
+[Polygons]
+;;Subcatchment   X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+Sub1             -146.471           8402.130          
+Sub1             -306.258           7203.728          
+Sub1             785.619            6591.212          
+Sub1             1797.603           6790.945          
+Sub1             1731.025           8375.499          
+Sub1             1065.246           8854.860          
+Sub1             -159.787           8375.499          
+Sub2             6524.634           5099.867          
+Sub2             5885.486           4101.198          
+Sub2             5992.011           3754.993          
+Sub2             6391.478           2636.485          
+Sub2             5778.961           1691.079          
+Sub2             6591.212           1651.132          
+Sub2             7003.995           2743.009          
+Sub2             7496.671           3861.518          
+Sub2             7962.716           5446.072          
+Sub2             6537.949           5486.019          
+Sub3             8308.921           6045.273          
+Sub3             8761.651           6431.425          
+Sub3             9227.696           6458.056          
+Sub3             9400.799           5992.011          
+Sub3             9813.582           4993.342          
+Sub3             9813.582           4087.883          
+Sub3             8215.712           3954.727          
+Sub3             8362.184           4593.875          
+Sub3             8428.762           6071.904          
+
